@@ -136,6 +136,12 @@ section {
   font-size: 1.3rem;
   cursor: pointer;
   display: none;
+  transition: background var(--transition), color var(--transition);
+}
+
+.menu-toggle:hover {
+  background: linear-gradient(120deg, var(--primary), var(--accent));
+  color: #fff;
 }
 
 .btn {
@@ -168,7 +174,7 @@ section {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(120deg, var(--primary-dark), #266fda);
+  background: linear-gradient(120deg, var(--primary), var(--accent));
 }
 
 .btn-outline {
@@ -178,8 +184,8 @@ section {
 }
 
 .btn-outline:hover {
-  background: #edf4ff;
-  border-color: #91b8ff;
+  background: linear-gradient(120deg, #edf4ff, #d7e4ff);
+  border-color: var(--primary);
 }
 
 /* Hero */
