@@ -3,7 +3,6 @@ const navLinks = document.getElementById("navLinks");
 const form = document.getElementById("messageForm");
 const formNote = document.getElementById("formNote");
 const yearSpan = document.getElementById("year");
-const cvBtn = document.getElementById("downloadCv");
 
 menuToggle.addEventListener("click", () => {
   navLinks.classList.toggle("show");
@@ -22,13 +21,6 @@ form.addEventListener("submit", (event) => {
   formNote.textContent =
     "Thanks " + name + ", your message has been recorded.";
   form.reset();
-});
-
-cvBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  alert(
-    "Replace this with your CV file link (for example: /assets/Alex_Morgan_CV.pdf)",
-  );
 });
 
 yearSpan.textContent = new Date().getFullYear();
