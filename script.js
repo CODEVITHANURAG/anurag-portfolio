@@ -14,13 +14,40 @@ navLinks.querySelectorAll("a").forEach((link) => {
   });
 });
 
-// Simple front-end form behavior for demo in a single-file setup.
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
+
   const name = form.name.value.trim();
-  formNote.textContent =
-    "Thanks " + name + ", your message has been recorded.";
-  form.reset();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  if (!name || !email || !message) {
+    formNote.textContent = "Please fill in all fields before submitting.";
+    return;
+  }
+
+  formNote.textContent = "Sending...";
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || "Failed to send your message.");
+    }
+
+    formNote.textContent = "Thanks " + name + ", your message has been saved.";
+    form.reset();
+  } catch (error) {
+    formNote.textContent = error.message || "There was an error sending your message.";
+  }
 });
 
 yearSpan.textContent = new Date().getFullYear();
